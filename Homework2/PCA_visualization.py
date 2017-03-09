@@ -78,6 +78,21 @@ def draw_data_with_PCA(data, V, mean, digit_size, raw_data):
     plt.title('25 images corresponding to the red dots')
     plt.show()
 
+def component_visual(mean, V, digit_size):
+    fig, axs = plt.subplots(1, 3)
+    
+    ax = axs[0]
+    figure = mean.reshape(digit_size, digit_size)
+    ax.imshow(figure)
+    
+    ax = axs[1]
+    figure = V[0].reshape(digit_size, digit_size)
+    ax.imshow(figure)
+    
+    ax = axs[2]
+    figure = V[1].reshape(digit_size, digit_size)
+    ax.imshow(figure)
+
 if __name__ == '__main__':
     p = 2
     digit_size = 32
@@ -89,3 +104,4 @@ if __name__ == '__main__':
     visualize_raw_data(raw_data[:100], digit_size=digit_size)
     W, V, mean = PCA_with_p_components(raw_data, p=p)
     draw_data_with_PCA(W, V, mean=mean, digit_size=digit_size, raw_data=raw_data)
+    component_visual(mean, V, digit_size)
