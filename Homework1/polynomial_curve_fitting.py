@@ -68,7 +68,7 @@ def polynomial_fit_with_penality(x, y, order, lam):
 
 if __name__ == '__main__':
     p_num = 10
-    order = 3
+    order = 9
     lam = np.e ** (-18)
     
     x, y = gen_data(p_num)

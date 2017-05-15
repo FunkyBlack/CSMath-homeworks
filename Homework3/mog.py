@@ -7,22 +7,26 @@ Created on Fri Mar 17 14:07:28 2017
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.legend_handler import HandlerPatch
-import matplotlib.patches as mpatches
+#==============================================================================
+# from matplotlib.legend_handler import HandlerPatch
+# import matplotlib.patches as mpatches
+#==============================================================================
 from matplotlib.patches import Ellipse
 
-np.random.seed(0)
-color_arr=['red','green','blue','white','yellow','black','cyan','magenta']
+np.random.seed(1)
+color_arr=['red','green','blue','yellow','white','black','cyan','magenta']
 
-class HandlerEllipse(HandlerPatch):
-    def create_artists(self, legend, orig_handle,
-                       xdescent, ydescent, width, height, fontsize, trans):
-        center = 0.5 * width - 0.5 * xdescent, 0.5 * height - 0.5 * ydescent
-        p = mpatches.Ellipse(xy=center, width=width + xdescent,
-                             height=height + ydescent)
-        self.update_prop(p, orig_handle, legend)
-        p.set_transform(trans)
-        return [p]
+#==============================================================================
+# class HandlerEllipse(HandlerPatch):
+#     def create_artists(self, legend, orig_handle,
+#                        xdescent, ydescent, width, height, fontsize, trans):
+#         center = 0.5 * width - 0.5 * xdescent, 0.5 * height - 0.5 * ydescent
+#         p = mpatches.Ellipse(xy=center, width=width + xdescent,
+#                              height=height + ydescent)
+#         self.update_prop(p, orig_handle, legend)
+#         p.set_transform(trans)
+#         return [p]
+#==============================================================================
 
 def BoxMullerSampling(mu=[0,0], sigma=[1,1], size=(1000,2)):
     u1 = np.random.uniform(size=size)
@@ -31,7 +35,7 @@ def BoxMullerSampling(mu=[0,0], sigma=[1,1], size=(1000,2)):
     z = np.dot(x, np.diag(sigma)) + mu
     return z
 
-def MixtureOfGaussian(ndim=2, mu=[[0,0],[5,5]], sigma=[[1,1],[2,2]],size=600): # Given the parameters of MOG
+def MixtureOfGaussian(ndim=4, mu=[[0,0],[5,5],[2,3],[8,8]], sigma=[[1,1],[0.5,0.5],[1,2],[0.5,1]], size=600): # Given the parameters of MOG
     data = {}
     sample = np.random.randint(low=0, high=size, size=ndim)
     p = sample / np.sum(sample) # Determine the mixture density
@@ -103,10 +107,10 @@ def EM_iteration(data):
     epsilon = 1e-1
     
     ####  Initialization ####
-    ndim=2
-    p_sample=[0.5,0.5]
-    mu=[[1,1],[2,2]]
-    sigma=[[[5,0],[0,5]],[[6,0],[0,6]]]
+    ndim=4
+    p_sample=[0.25,0.25,0.25,0.25]
+    mu=[[1,1],[3,3],[2,2],[6,6]]
+    sigma=[[[2,0],[0,2]],[[5,0],[0,5]],[[3,0],[0,3]],[[4,0],[0,4]]]
     ####
     
     n_samples = data.shape[0]
@@ -115,7 +119,7 @@ def EM_iteration(data):
         
         ells = [Ellipse(xy=mu[j], width=6 * np.sqrt(sigma[j][0][0]), height=6 * np.sqrt(sigma[j][1][1])) for j in range(ndim)]
         fig = plt.figure(1, figsize=(18,10))
-        ax = fig.add_subplot(3,4,i+1)
+        ax = fig.add_subplot(4,4,i+1)
         ax.set_title('Iteration: {}'.format(i+1))
         for j,e in enumerate(ells):
             ax.add_artist(e)
@@ -127,7 +131,7 @@ def EM_iteration(data):
         ax.set_ylim(-4, 12)
         plt.plot(data[:,0],data[:,1],'o',color='{}'.format(color_arr[-2]), markersize=0.9)
         plt.show()
-        plt.savefig('EM_iterations.png')
+        plt.savefig('EM_iterations_ndim4.png')
         
         p_estimate = E_step(data=data, ndim=ndim, p_sample=p_sample, mu=mu, sigma=sigma)
         old_mu = mu
@@ -146,7 +150,7 @@ def EM_iteration(data):
             ax.set_xlim(-4, 12)
             ax.set_ylim(-4, 12)
             plt.show()
-            plt.savefig('MOG_Using_EM.png')
+            plt.savefig('MOG_Using_EM_ndim4.png')
             break
     
     return p_sample, mu, sigma
