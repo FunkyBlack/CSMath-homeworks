@@ -70,7 +70,7 @@ Comparison of estimated (dashed) and actual (solid) values:
 >1. Programming lanuage: python  
 >2. Design your own testing functions  
 ### Results
-Testing function is <img src="http://chart.googleapis.com/chart?cht=tx&chl=f(x)=x^{T}Ax+e^{-b^{T}x}+e^{-x^{T}x}" style="border:none;">: 
+Testing function is <img src="http://chart.googleapis.com/chart?cht=tx&chl=f(x)=x^{T}Ax%2Be^{-b^{T}x}%2Be^{-x^{T}x}" style="border:none;">: 
 ![LM](https://github.com/FunkyBlack/CSMath-homeworks/raw/master/Homework4/LM_iterations.png)  
 
 ## 5. [SVM][]
