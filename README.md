@@ -1,7 +1,7 @@
 # **CSMath-homeworks**
 ## 5 Homeworks:  
-1)[Curve fitting][]  
-2)[PCA visualization][]  
+  1) [Curve fitting][]  
+  2) [PCA visualization][]  
 
 
 
