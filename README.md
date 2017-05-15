@@ -3,7 +3,7 @@
 ## 1. [Curve fitting][]
 
 > ### Goal  
-Implement polynomial curve fitting in python and with TensorFlow (optionally).
+>Implement polynomial curve fitting in python and with TensorFlow (optionally).
   
 >1. sample the function curve of y=sin(x) with Gaussian noise  
 >2. fit degree 3 and 9 curves in 10 samples  
@@ -28,7 +28,7 @@ Degree 9 in 10 and 100 samples using Tensorflow with regularization term (20000 
 
 ## 2. [PCA visualization][]  
 >### Goal  
-Represent digits '3' in 2D  
+>Represent digits '3' in 2D  
 
 >1. convert data from the UCI Optical Recognition of Handwritten Digits Data Set  
 >2. perform PCA over all digit '3' with 2 components  
