@@ -5,17 +5,17 @@
 > ### Goal  
 Implement polynomial curve fitting in python and with TensorFlow (optionally).
   
-> 1. sample the function curve of y=sin(x) with Gaussian noise  
-2. fit degree 3 and 9 curves in 10 samples  
-3. fit degree 9 curves in 15 and 100 samples  
-4. fit degree 9 curve in 10 samples but with regularization term  
+>1. sample the function curve of y=sin(x) with Gaussian noise  
+>2. fit degree 3 and 9 curves in 10 samples  
+>3. fit degree 9 curves in 15 and 100 samples  
+>4. fit degree 9 curve in 10 samples but with regularization term  
 > ### Requirements  
-> 1. Programming lanuage: python  
-2. Optional package: tensorflow web  
-3. Plot the results in matplotlibIntroduction in Chinese Tutorial
+>1. Programming lanuage: python  
+>2. Optional package: tensorflow web  
+>3. Plot the results in matplotlibIntroduction in Chinese Tutorial
 ### Results  
 Fit degree 3 and 9 curves in 10 samples:  
-![order3_num10](H:\陈明_硕士一年级\研一下\计算机应用数学上\CSMath-homeworks\Homework1\order3_num10.png)  
+![order3_num10](https://github.com/FunkyBlack/CSMath-homeworks/raw/master/Homework1/order3_num10.png)  
 ![order9_num10](H:\陈明_硕士一年级\研一下\计算机应用数学上\CSMath-homeworks\Homework1\order9_num10.png)  
 Fit degree 9 curves in 15 and 100 samples:  
 ![order9_num15](H:\陈明_硕士一年级\研一下\计算机应用数学上\CSMath-homeworks\Homework1\order9_num15.png)  
@@ -31,12 +31,12 @@ Degree 9 in 10 and 100 samples using Tensorflow with regularization term (20000 
 Represent digits '3' in 2D  
 
 >1. convert data from the UCI Optical Recognition of Handwritten Digits Data Set  
-2. perform PCA over all digit '3' with 2 components  
-3. plot the PCA results  
+>2. perform PCA over all digit '3' with 2 components  
+>3. plot the PCA results  
 >### Requirements  
 >1. Programming lanuage: python  
-2. Plot the results in matplotlib  
-3. Use TensorFlow if possible  
+>2. Plot the results in matplotlib  
+>3. Use TensorFlow if possible  
 ### Results  
 First digit '3' in the dataset:  
 ![PCA1](H:\陈明_硕士一年级\研一下\计算机应用数学上\CSMath-homeworks\Homework2\Visual_digit_3.png)  
@@ -52,12 +52,12 @@ Visualization of mean and first 2 components of digit '3':
 >Implement MOG in 2D case  
 
 >1. Generate sampling points from a 2D Gaussian distribution  
-2. Generate sampling points from a 2D Mixture of Gaussian (MOG) distribution  
-3. Estimate parameters of generated data via step2 by using the E-M method  
-4. Plot iteration results  
+>2. Generate sampling points from a 2D Mixture of Gaussian (MOG) distribution  
+>3. Estimate parameters of generated data via step2 by using the E-M method  
+>4. Plot iteration results  
 >### Requirements  
 >1. Programming lanuage: python  
-2. Plot the results in matplotlib  
+>2. Plot the results in matplotlib  
 ### Results  
 Using EM method to learn parameters of 2D-MOG distribution:  
 ![MOG1](H:\陈明_硕士一年级\研一下\计算机应用数学上\CSMath-homeworks\Homework3\EM_iterations.png)  
@@ -72,7 +72,7 @@ Comparison of estimated (dashed) and actual (solid) values:
 >Implement the Levenberg-Marquardt method  
 >### Requirements
 >1. Programming lanuage: python  
-2. Design your own testing functions  
+>2. Design your own testing functions  
 ### Results
 Testing function is \\(f(x)=x^{T}Ax+e^{-b^{T}x}+e^{-x^{T}x}\\):  
 ![LM](H:\陈明_硕士一年级\研一下\计算机应用数学上\CSMath-homeworks\Homework4\LM_iterations.png)  
@@ -85,7 +85,7 @@ Testing function is \\(f(x)=x^{T}Ax+e^{-b^{T}x}+e^{-x^{T}x}\\):
 >3. output (and plot) classification results
 >### Requirements
 >1. Programming lanuage: python  
-2. Plot the results in matplotlib
+>2. Plot the results in matplotlib
 ### Results
 Data and label generated using [*sklearn*][]:  
 ![SVM1](H:\陈明_硕士一年级\研一下\计算机应用数学上\CSMath-homeworks\Homework5\Generated_data.png)  
