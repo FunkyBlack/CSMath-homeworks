@@ -20,7 +20,7 @@ def visualize_raw_data(raw_data, digit_size = 32):
             figure[i * digit_size: (i + 1) * digit_size,
                    j * digit_size: (j + 1) * digit_size] = (digit + 1) % 2
     
-    plt.figure(figsize=(10, 10), facecolor='w', edgecolor='g')
+    plt.figure(0, figsize=(10, 10), facecolor='w', edgecolor='g')
     plt.style.use('grayscale')
     plt.grid(True, color='b', linestyle='-', linewidth=2)
     plt.imshow(figure)
@@ -32,6 +32,7 @@ def visualize_raw_data(raw_data, digit_size = 32):
     ax.set_yticks(np.linspace(0,320,11))
     ax.set_yticklabels('')
     plt.show()
+    plt.savefig('Visual_digit_3.png')
 
 def PCA_with_p_components(data, p):
     
@@ -49,6 +50,7 @@ def nearest_point(data, x, y):
     
 def draw_data_with_PCA(data, V, mean, digit_size, raw_data):
     
+    plt.figure(1)
     plt.scatter(data[:,0], data[:,1], color='g')
     figure = np.zeros((digit_size * 5, digit_size * 5))
     for p, i in enumerate(range(-4, 5, 2)):
@@ -65,8 +67,9 @@ def draw_data_with_PCA(data, V, mean, digit_size, raw_data):
     plt.xlabel('First Principal Component')
     plt.ylabel('Second Principal Component')
     plt.show()
-    
-    plt.figure(figsize=(5, 5), facecolor='w', edgecolor='g')
+    plt.savefig('Digit3_using_PCA.png')
+
+    plt.figure(2, figsize=(5, 5), facecolor='w', edgecolor='g')
     plt.style.use('grayscale')
     plt.imshow(figure)
     plt.grid(True, color='b', linestyle='-', linewidth=2)
@@ -77,6 +80,7 @@ def draw_data_with_PCA(data, V, mean, digit_size, raw_data):
     ax.set_yticklabels('')
     plt.title('25 images corresponding to the red dots')
     plt.show()
+    plt.savefig('Raw_digit3_on_red_dots.png')
 
 def component_visual(mean, V, digit_size):
     fig, axs = plt.subplots(1, 3)
@@ -92,6 +96,7 @@ def component_visual(mean, V, digit_size):
     ax = axs[2]
     figure = V[1].reshape(digit_size, digit_size)
     ax.imshow(figure)
+    plt.savefig('Principal_Components.png')
 
 if __name__ == '__main__':
     p = 2

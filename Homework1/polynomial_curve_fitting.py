@@ -2,7 +2,7 @@
 """
 Created on Wed Mar  1 14:38:19 2017
 
-@author: Ming Chen
+@author: FunkyBlack
 """
 
 import numpy as np
@@ -27,7 +27,7 @@ def draw_curve(x, y, w, order):
     draw_sin_curve()
         
     def draw_data_scatter(x, y):
-        plt.plot(x, y, 'wo')
+        plt.plot(x, y, 'bo')
         
     draw_data_scatter(x, y)
     
@@ -62,20 +62,23 @@ def polynomial_fit(x, y, order):
 def polynomial_fit_with_penality(x, y, order, lam):
     P_x = np.array([[xi ** i for i in range(order+1)] for xi in x])
     Y = np.array(y).reshape((-1, 1))
-    w = np.linalg.inv(P_x.T.dot(P_x) + lam * np.eye(p_num)).dot(P_x.T).dot(Y)
+    w = np.linalg.inv(P_x.T.dot(P_x) + lam * np.eye(order+1)).dot(P_x.T).dot(Y)
     print (w)
     return w
 
 if __name__ == '__main__':
     p_num = 10
-    order = 9
+    order = 3
     lam = np.e ** (-18)
     
     x, y = gen_data(p_num)
     w = polynomial_fit(x, y, order)
-    plt.text(0.7, 1, 'M = '+np.str(order) , fontsize=12)
+    fig = plt.figure(0)
+    plt.text(0.7, 1, '$M = {}$'.format(np.str(order)) , fontsize=15)
     draw_curve(x, y, w, order)
+    plt.savefig('order{}_num{}.png'.format(str(order), str(p_num)))
     w_penality = polynomial_fit_with_penality(x, y, order, lam)
-    plt.text(0.7, 1, r'$\mathrm{ln}\lambda = \mathrm{-18}$', fontsize=12)
+    fig = plt.figure(1)
+    plt.text(0.7, 1, r'$\mathrm{ln}\lambda = \mathrm{-18}$', fontsize=15)
     draw_curve(x, y, w_penality, order)
-
+    plt.savefig('order{}_num{}_with_penality.png'.format(str(order), str(p_num)))

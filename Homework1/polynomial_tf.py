@@ -2,7 +2,7 @@
 """
 Created on Wed Mar  1 21:54:27 2017
 
-@author: Ming Chen
+@author: FunkyBlack
 """
 import tensorflow as tf
 import numpy as np
@@ -28,7 +28,7 @@ def draw_curve(x, y):
     draw_sin_curve()
         
     def draw_data_scatter(x, y):
-        plt.plot(x, y, 'wo')
+        plt.plot(x, y, 'bo')
         
     draw_data_scatter(x, y)
   
@@ -37,7 +37,7 @@ def draw_curve(x, y):
         ylims = plt.ylim()
         plt.xlim(xlims[0]-0.1, xlims[1]+0.1)
         plt.ylim(ylims[0]-0.2, ylims[1]+0.2)
-        plt.title('Polynomial Curve Fitting')
+        plt.title('Polynomial Curve Fitting Using Tensorflow')
         plt.xlabel('x')
         plt.ylabel('y', rotation='horizontal')
     
@@ -53,8 +53,8 @@ def draw_fit_curve(w, order):
 def main():
     sess = tf.InteractiveSession()
     
-    p_num = 10
-    order = 3
+    p_num = 100
+    order = 9
     lamb = np.e ** (-18)
     
     x = tf.placeholder(tf.float32, shape=[p_num, 1])
@@ -62,25 +62,25 @@ def main():
    
     w = weight_variable([order+1, 1])
     
-    P_x = tf.reshape(tf.pack([tf.pow(x, i) for i in range(order+1)], axis=1), (p_num, order+1))
+    P_x = tf.reshape(tf.stack([tf.pow(x, i) for i in range(order+1)], axis=1), (p_num, order+1))
     y = tf.matmul(P_x, w)
     
     loss = 0.5 * tf.reduce_sum(tf.pow(y_-y, 2))
     loss_with_penality = loss + 0.5 * lamb * tf.reduce_sum(tf.pow(w, 2))
     
-    train_step = tf.train.GradientDescentOptimizer(0.09).minimize(loss)
+    train_step = tf.train.GradientDescentOptimizer(0.01).minimize(loss)
     
     batch = gen_data(p_num)
     sess.run(tf.global_variables_initializer())
-    for i in range(50000):
+    for i in range(20000):
         train_step.run(feed_dict={x: batch[0], y_: batch[1]})
         if i % 1000 == 0:
-            print("loss: ", sess.run(loss, feed_dict={x: batch[0], y_: batch[1]}))
+            print("loss: ", sess.run(loss_with_penality, feed_dict={x: batch[0], y_: batch[1]}))
     
     w_value = w.eval()
     draw_curve(batch[0], batch[1])
     draw_fit_curve(w_value, order)
-    
+    plt.savefig('CurveFittingTF_num{}.png'.format(str(p_num)))
     
 if __name__ == '__main__':
     main()
